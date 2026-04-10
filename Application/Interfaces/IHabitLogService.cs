@@ -6,10 +6,10 @@ namespace Application.Interfaces;
 
 public interface IHabitLogService
 {
-    Task<ResponseHabitLogDto?> GetLogsByUserIdAsync(int userId);
-    Task<IEnumerable<ResponseHabitLogDto>> GetLogsByHabitIdAsync(int habitId);
-    Task<ResponseHabitLogDto?> GetLogByIdAsync(int id);
+    Task<IEnumerable<ResponseHabitLogDto>> GetLogsByUserIdAsync(int userId);
+    Task<IEnumerable<ResponseHabitLogDto>> GetLogsByHabitIdAsync(int habitId, int userId);
+    Task<ResponseHabitLogDto?> GetLogByIdAsync(int id, int userId);
     Task<ResponseHabitLogDto> CreateLogAsync(CreateHabitLogDto createLog);
-    Task<ResponseHabitLogDto?> UpdateLogAsync(int id, UpdateHabitLogDto updateLog);
-    Task<bool> DeleteLogAsync(int id);
+    Task<ResponseHabitLogDto?> UpdateLogAsync(int id, int userId, UpdateHabitLogDto updateLog);
+    Task<bool> DeleteLogAsync(int id, int userId);
 }

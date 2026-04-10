@@ -3,10 +3,9 @@ using Application.DTOs.ResponseDTOs;
 using Application.DTOs.UpdateDTOs;
 using Domain.Models;
 using Application.Interfaces;
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Services;
+namespace Application.Services;
 
 public class UserService : IUserService
 {
@@ -14,7 +13,7 @@ public class UserService : IUserService
 
     public UserService(IAppDbContext context) => db = context;
 
-    public async Task<ResponseUserDto> CreateUserAsync(CreateUserDto createUser)
+    public async Task<User> CreateUserAsync(CreateUserDto createUser)
     {
         User? existingUser = await db.Users.FirstOrDefaultAsync(u => u.Email == createUser.Email);
         if (existingUser != null)
@@ -33,13 +32,7 @@ public class UserService : IUserService
         db.Users.Add(user);
         await db.SaveChangesAsync();
 
-        return new ResponseUserDto
-        {
-            CreatedAt = user.CreatedAt,
-            Email = user.Email,
-            Id = user.Id,
-            Name = user.Name
-        };
+        return user;
     }
 
     public async Task<bool> DeleteUserAsync(int id)

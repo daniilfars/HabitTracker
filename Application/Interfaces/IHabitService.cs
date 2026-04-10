@@ -8,8 +8,9 @@ namespace Application.Interfaces;
 public interface IHabitService
 {
     Task<IEnumerable<ResponseHabitDto>> GetAllHabitsAsync();
-    Task<ResponseHabitDto?> GetHabitByIdAsync(int id);
+    Task<IEnumerable<ResponseHabitDto>> GetHabitsByUserIdAsync(int userId);
+    Task<ResponseHabitDto?> GetHabitByIdAsync(int id, int userId);
     Task<Habit> CreateHabitAsync(CreateHabitDto createHabit);
-    Task<ResponseHabitDto?> UpdateHabitAsync(int id, UpdateHabitDto updateHabit);
-    Task<bool> DeleteHabitAsync(int id);
+    Task<ResponseHabitDto?> UpdateHabitAsync(int id, int userId, UpdateHabitDto updateHabit);
+    Task<bool> DeleteHabitAsync(int id, int userId);
 }
