@@ -133,4 +133,15 @@ public class AuthService : IAuthService
             }
         };
     }
+
+    public async Task RevokeRefreshTokenAsync(string refreshToken)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+        if (user == null)
+            return;
+
+        user.RefreshToken = string.Empty;
+        user.RefreshTokenExpiryTime = DateTime.UtcNow;
+        await _context.SaveChangesAsync();
+    }
 }

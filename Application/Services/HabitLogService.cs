@@ -2,7 +2,6 @@
 using Application.DTOs.ResponseDTOs;
 using Application.DTOs.UpdateDTOs;
 using Domain.Models;
-using Domain.Enums;
 using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -76,7 +75,7 @@ public class HabitLogService : IHabitLogService
         if (habit == null)
             throw new InvalidOperationException("Привычка не найдена");
 
-        if (habit.Id != userId)
+        if (habit.UserId != userId)
             throw new UnauthorizedAccessException("У вас нет прав на просмотр этой записи");
 
         return await db.HabitLogs

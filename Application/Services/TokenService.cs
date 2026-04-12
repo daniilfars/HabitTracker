@@ -7,7 +7,7 @@ using Application.Interfaces;
 using Domain.Models;
 using System.Security.Cryptography;
 
-namespace Infrastructure.Services;
+namespace Application.Services;
 
 public class TokenService : ITokenService
 {

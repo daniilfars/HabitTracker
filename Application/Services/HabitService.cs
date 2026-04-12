@@ -14,7 +14,7 @@ public class HabitService : IHabitService
 
     public HabitService(IAppDbContext context) => db = context;
 
-    public async Task<Habit> CreateHabitAsync(CreateHabitDto createHabit)
+    public async Task<ResponseHabitDto> CreateHabitAsync(CreateHabitDto createHabit)
     {
         if (createHabit.Frequency == FrequencyType.Custom && (createHabit.CustomDays == null || createHabit.CustomDays.Count == 0))
         {
@@ -38,7 +38,7 @@ public class HabitService : IHabitService
         db.Habits.Add(habit);
         await db.SaveChangesAsync();
 
-        return habit;
+        return MapToResponse(habit);
     }
 
     public async Task<bool> DeleteHabitAsync(int id, int userId)
