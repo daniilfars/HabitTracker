@@ -40,6 +40,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IHabitService, HabitService>();
 builder.Services.AddScoped<IHabitLogService, HabitLogService>();
+builder.Services.AddScoped<ICalendarService, CalendarService>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
